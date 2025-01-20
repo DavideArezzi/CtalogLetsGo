@@ -11,8 +11,8 @@ interface Props {
 const HomeScreen = ({ navigation }: Props) => {
   return (
     <View style={homeStyles.container}>
-      <Text>Schermata Settings</Text>
-      <Button title={'Go to favorites'} onPress={() => navigation.navigate('Favorite')} />
+      <Text>Schermata Home</Text>
+      <Button title={'Go to favorites'} onPress={() => navigation.navigate('Favorites')} />
     </View>
   );
 };
