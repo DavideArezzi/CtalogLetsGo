@@ -1,10 +1,10 @@
-import { Button, Text, View,FlatList } from 'react-native';
+import { Button, Text, View, FlatList } from 'react-native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { MainParamList, Screen } from '../../navigation/types';
 import { homeStyles } from './home_styles';
 import React, { useCallback, useEffect, useState } from 'react';
 import { useProducts } from '../hook/useProducts.facade';
-
+import Card from '../../atoms/product/product.atom';
 
 interface Props {
   navigation: NativeStackNavigationProp<MainParamList, Screen.Home>;
@@ -32,7 +32,6 @@ const HomeScreen = ({ navigation }: Props) => {
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
   const [selectedRatingOrder, setSelectedRatingOrder] = useState<'asc' | 'desc' | null>(null);
 
-  // ** Funzione per applicare i filtri **
   const onFilterApply = useCallback(() => {
     let filteredProducts = [...initialProducts];
 
@@ -63,69 +62,87 @@ const HomeScreen = ({ navigation }: Props) => {
     setProducts(filteredProducts);
   }, [filterType, selectedCategory, selectedRatingOrder, initialProducts, setProducts]);
 
-  // ** Render delle opzioni di filtro **
-  const renderFilterOptions = useCallback(() => {
-    return (
-      <View style={homeStyles.filtersContainer}>
-        <Button title="Reset" onPress={() => setProducts(initialProducts)} />
-        <Button
-          title="Filter by Category"
-          onPress={() => {
-            setFilterType(FilterType.category);
-            setSelectedCategory('electronics'); // Esempio di categoria
-          }}
-        />
-        <Button
-          title="Filter by Rating Asc"
-          onPress={() => {
-            setFilterType(FilterType.rating);
-            setSelectedRatingOrder('asc');
-          }}
-        />
-        <Button
-          title="Filter by Rating Desc"
-          onPress={() => {
-            setFilterType(FilterType.rating);
-            setSelectedRatingOrder('desc');
-          }}
-        />
-        <Button
-          title="Filter by Category + Rating"
-          onPress={() => {
-            setFilterType(FilterType.allFilterType);
-            setSelectedCategory('jewelery'); // Esempio di categoria
-            setSelectedRatingOrder('desc');
-          }}
-        />
-        <Button title="Apply Filters" onPress={onFilterApply} />
-      </View>
-    );
-  }, [onFilterApply, initialProducts]);
+  useEffect(() => {
+    onFilterApply();
+  }, [filterType, selectedCategory, selectedRatingOrder]);
 
-  // ** Render di ogni prodotto **
+  useEffect(() => {
+    const unsubscribe = navigation.addListener('focus', () => {
+      console.log('Favorites screen focused');
+      refreshProducts();
+      loadFavorites();
+    });
+
+    return unsubscribe;
+  }, [loadFavorites, navigation, refreshProducts]);
+
+  const renderFilterOptions = useCallback(() => (
+    <View style={homeStyles.filtersContainer}>
+      <Button
+        title="Reset Filters"
+        onPress={() => {
+          setFilterType(FilterType.initial);
+          setProducts(initialProducts);
+        }}
+      />
+      <Button
+        title="Filter by Category"
+        onPress={() => {
+          setFilterType(FilterType.category);
+          setSelectedCategory('electronics');
+        }}
+      />
+      <Button
+        title="Filter by Rating Asc"
+        onPress={() => {
+          setFilterType(FilterType.rating);
+          setSelectedRatingOrder('asc');
+        }}
+      />
+      <Button
+        title="Filter by Rating Desc"
+        onPress={() => {
+          setFilterType(FilterType.rating);
+          setSelectedRatingOrder('desc');
+        }}
+      />
+      <Button
+        title="Filter by Category + Rating"
+        onPress={() => {
+          setFilterType(FilterType.allFilterType);
+          setSelectedCategory('jewelery');
+          setSelectedRatingOrder('desc');
+        }}
+      />
+    </View>
+  ), [setProducts, setFilterType]);
+
   const renderProduct = useCallback(
     ({ item }) => (
-      <View style={homeStyles.productCard}>
-        <Text>{item.title}</Text>
-        <Text>Category: {item.category}</Text>
-        <Text>Rating: {item.rating.rate}</Text>
-        <Button
-          title={favoriteIds.includes(item.id) ? 'Unfavorite' : 'Favorite'}
-          onPress={() => addFavorite(item)}
-        />
-      </View>
+      <Card
+        product={item}
+        onAddFavorite={() => addFavorite(item)}
+        selected={favoriteIds.includes(item.id)}
+        onPress={() => {
+          if (!item.id) return;
+          navigation.navigate(Screen.Detail, { id: item.id });
+        }}
+      />
     ),
-    [addFavorite, favoriteIds]
+    [addFavorite, navigation, favoriteIds]
   );
+
+  const ItemSeparatorComponent = useCallback(() => <View style={homeStyles.itemSeparator}></View>, []);
 
   return (
     <View style={homeStyles.container}>
       {renderFilterOptions()}
       <FlatList
+        showsVerticalScrollIndicator={false}
         data={products}
         renderItem={renderProduct}
-        keyExtractor={(item) => item.id.toString()}
-        contentContainerStyle={homeStyles.listContainer}
+        keyExtractor={(item) => (item.id ? item.id.toString() : Math.random().toString())}
+        ItemSeparatorComponent={ItemSeparatorComponent}
       />
     </View>
   );

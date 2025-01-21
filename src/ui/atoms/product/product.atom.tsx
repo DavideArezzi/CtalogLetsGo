@@ -1,6 +1,7 @@
 import styles from "./product.style";
 import { Image, Text, TouchableOpacity, View } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
+import React, { memo } from 'react';
 
 interface Product {
     id: number;
@@ -66,3 +67,4 @@ const Card = ({ product, selected, onAddFavorite, onPress }: ProductCardProps) =
     );
   };
 
+export default memo(Card);
