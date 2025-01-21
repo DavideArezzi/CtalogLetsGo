@@ -59,9 +59,7 @@ const Card = ({ product, selected, onAddFavorite, onPress }: ProductCardProps) =
           <TouchableOpacity style={styles.button} onPress={onPress}>
             <Text style={styles.buttonText}>View</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={styles.button} onPress={onAddFavorite}>
-            <Text style={styles.buttonText}>Favorite</Text>
-          </TouchableOpacity>
+         
         </View>
       </View>
     );

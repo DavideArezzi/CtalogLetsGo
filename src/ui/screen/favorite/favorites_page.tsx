@@ -1,7 +1,7 @@
-import { Button, Text, View } from 'react-native';
-import React from 'react';
+import { Button, Text, View, FlatList } from 'react-native';
+import React  { useCallback, useEffect, useMemo } from 'react';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
-import { MainParamList, Screen } from '../../src/types';
+import { MainParamList, Screen } from '../../navigation/types';
 import { favoritesStyles } from './favorites_styles';
 
 interface Props {
@@ -9,6 +9,7 @@ interface Props {
 }
 
 const FavoritesScreen = ({ navigation }: Props) => {
+  const { products}
   return (
     <View style={favoritesStyles.container}>
       <Text>Schermata favorites</Text>
