@@ -5,6 +5,7 @@ import { homeStyles } from './home_styles';
 import React, { useCallback, useEffect, useState } from 'react';
 import { useProducts } from '../hook/useProducts.facade';
 import Card from '../../atoms/product/product.atom';
+import { Ionicons } from '@expo/vector-icons';
 
 interface Props {
   navigation: NativeStackNavigationProp<MainParamList, Screen.Home>;
@@ -84,7 +85,7 @@ const HomeScreen = ({ navigation }: Props) => {
           setFilterType(FilterType.initial);
           setProducts(initialProducts);
         }}
-      />
+       />
       <Button
         title="Filter by Category"
         onPress={() => {
