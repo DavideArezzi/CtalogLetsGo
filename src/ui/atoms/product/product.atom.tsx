@@ -1,5 +1,6 @@
 import styles from "./product.style";
 import { Image, Text, TouchableOpacity, View } from 'react-native';
+import { Ionicons } from '@expo/vector-icons';
 
 interface Product {
     id: number;
@@ -28,6 +29,12 @@ const Card = ({ product, selected, onAddFavorite, onPress }: ProductCardProps) =
           <View style={styles.titleContainer}>
             <Text style={styles.titleStyle}>{product.title}</Text>
           </View>
+          <Ionicons
+            onPress={onAddFavorite}
+            name={selected ? 'heart-sharp' : 'heart-outline'}
+            size={28}
+            color={'#ffd700'}
+          />
         </View>
   
         {/* Immagine */}
