@@ -26,6 +26,14 @@ const FavoritesScreen = ({ navigation }: Props) => {
       product={item}
       onAddFavorite={() => addFavorite(item)}
       selected={favoriteIds.includes(item.id)}
+       onPress={() => {
+                if (!item.id) {
+                  return;
+                }
+                navigation.navigate(Screen.Detail, {
+                   id: item.id,
+                  });
+              }}
       />
     ),
     [addFavorite, favoriteIds]
