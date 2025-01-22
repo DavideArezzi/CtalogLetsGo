@@ -65,18 +65,12 @@ const DetailScreen = ({navigation, route }: Props) => {
 
   return (
     <View style={styles.container}>
-        
-      {/* Header with image */}
       <Image source={{ uri: product.image }} style={styles.headerImage} />
-      
-      {/* Product details */}
       <View style={styles.content}>
         <Text style={styles.title}>{product.title}</Text>
         <Text style={styles.category}>{product.category}</Text>
         <Text style={styles.price}>${product.price.toFixed(2)}</Text>
         <Text style={styles.description}>{product.description}</Text>
-        
-        {/* Rating with stars */}
         <View style={styles.rating}>
           {Array.from({ length: Math.round(product.rating.rate) }).map((_, index) => (
             <Ionicons key={index} name="star" size={20} color="#FFD700" />
