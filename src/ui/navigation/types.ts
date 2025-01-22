@@ -2,6 +2,7 @@
 export enum Screen {
     TabNavigator = 'TabNavigator',
     Home = 'Home',
+    Detail= 'Detail',
     Favorites = 'Favorites',
   }
 
@@ -16,5 +17,7 @@ export type TabParams = {
 
 export type MainParamList = {
     TabNavigator: undefined;
-    
+    [Screen.Detail]: {
+      id: number;
+    };
   };

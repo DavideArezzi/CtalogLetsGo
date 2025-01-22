@@ -138,8 +138,12 @@ const HomeScreen = ({ navigation }: Props) => {
         onAddFavorite={() => addFavorite(item)}
         selected={favoriteIds.includes(item.id)}
         onPress={() => {
-          if (!item.id) return;
-          navigation.navigate(Screen.Detail, { id: item.id });
+          if (!item.id) {
+            return;
+          }
+          navigation.navigate(Screen.Detail, {
+             id: item.id,
+            });
         }}
       />
     ),
