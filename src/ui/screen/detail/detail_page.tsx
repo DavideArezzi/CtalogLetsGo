@@ -1,5 +1,5 @@
 import React, { useEffect, useState, memo } from 'react';
-import { Image, Text, View, TouchableOpacity} from 'react-native';
+import { Image, Text, View, Button} from 'react-native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { styles } from '../detail/detail_style';
 import { Ionicons } from '@expo/vector-icons';
@@ -65,11 +65,7 @@ const DetailScreen = ({navigation, route }: Props) => {
 
   return (
     <View style={styles.container}>
-        <TouchableOpacity
-        onPress={() => navigation.navigate(Screen.goBack)}
-      >
-        <Ionicons name="arrow-back" size={24} color="#000" />
-         </TouchableOpacity>
+        
       {/* Header with image */}
       <Image source={{ uri: product.image }} style={styles.headerImage} />
       
@@ -88,6 +84,7 @@ const DetailScreen = ({navigation, route }: Props) => {
         </View>
         <Text style={styles.reviews}>({product.rating.count} reviews)</Text>
       </View>
+      <Button title={'Torna indietro'} onPress={navigation.goBack} />
     </View>
   );
 };
