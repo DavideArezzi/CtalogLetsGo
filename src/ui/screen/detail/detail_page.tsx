@@ -81,7 +81,7 @@ const DetailScreen = ({navigation, route }: Props) => {
       <Button 
         title={'Torna indietro'} 
         onPress={navigation.goBack} 
-         style={styles.backButton} 
+        style={styles.backButton} 
       />
    </View>
   );
