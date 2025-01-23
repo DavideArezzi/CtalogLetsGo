@@ -79,7 +79,7 @@ const HomeScreen = ({ navigation }: Props) => {
           <Ionicons
             name="arrow-up"
             size={24}
-            color={selectedRatingOrder === 'asc' ? 'green' : '#ffffff'}
+            color={selectedRatingOrder === 'asc' ? 'gray' : '#ffffff'}
           />
         </Button>
         <Button
@@ -88,7 +88,7 @@ const HomeScreen = ({ navigation }: Props) => {
           <Ionicons
             name="arrow-down"
             size={24}
-            color={selectedRatingOrder === 'desc' ? 'green' : '#ffffff'}
+            color={selectedRatingOrder === 'desc' ? 'gray' : '#ffffff'}
           />
         </Button>
         <Button onPress={() => {
@@ -98,36 +98,29 @@ const HomeScreen = ({ navigation }: Props) => {
           <Ionicons
             name="refresh"
             size={24}
-            color={'gray'}
+            color={'white'}
           />
         </Button>
       </View>
-      <View style={homeStyles.filtersContainer}>
-        <View>
-          <Button
-            onPress={() => setSelectedCategory('electronics')}
-          >
+      <View style={homeStyles.filtersContainerCategory}>
+        <View style={homeStyles.filterRow}>
+          <Button onPress={() => setSelectedCategory('electronics')}>
             <Text style={homeStyles.textlabel}>electronics</Text>
           </Button>
-          <Button
-            onPress={() => setSelectedCategory('jewelery')}
-          >
+          <Button onPress={() => setSelectedCategory('jewelery')}>
             <Text style={homeStyles.textlabel}>jewelery</Text>
           </Button>
-        </View>
-        <View>
-          <Button
-            onPress={() => setSelectedCategory("women's clothing")}
-          >
-            <Text style={homeStyles.textlabel}>womens clothing</Text>
-          </Button>
-          <Button
-            onPress={() => setSelectedCategory("men's clothing")}
-          >
-            <Text style={homeStyles.textlabel}>mens clothing</Text>
-          </Button>
-        </View>
       </View>
+      <View style={homeStyles.filterRow}>
+        <Button onPress={() => setSelectedCategory("women's clothing")}>
+          <Text style={homeStyles.textlabel}>womens clothing</Text>
+        </Button>
+        <Button onPress={() => setSelectedCategory("men's clothing")}>
+          <Text style={homeStyles.textlabel}>mens clothing</Text>
+        </Button>
+      </View>
+  </View>
+
     </View>
   ), [selectedCategory, selectedRatingOrder]);
 

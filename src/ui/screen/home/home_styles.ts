@@ -25,6 +25,28 @@ export const homeStyles = StyleSheet.create({
     shadowRadius: 3.84,
     elevation: 2,
   },
+  filtersContainerCategory: {
+    flexDirection: 'column', // Organizza i pulsanti in colonne
+    justifyContent: 'space-around',
+    marginBottom: 16,
+    backgroundColor: '#fff',
+    paddingVertical: 10,
+    paddingHorizontal: 8,
+    borderRadius: 8,
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.1,
+    shadowRadius: 3.84,
+    elevation: 2,
+  },
+  filterRow: {
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    marginBottom: 10, // Spazio tra le righe
+  },
  
   listContainer: {
     paddingBottom: 16,

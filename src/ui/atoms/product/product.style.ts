@@ -2,7 +2,7 @@ import { StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: '#ffa500',
+    backgroundColor: '#BEBCBC',
     borderRadius: 8,
     padding: 16,
     marginVertical: 8,
@@ -27,14 +27,20 @@ const styles = StyleSheet.create({
     color: '#333',
   },
   imageContainer: {
-    alignItems: 'center',
-    marginBottom: 12,
+    width: '100%',
+    height: 300,
+    position: 'relative', 
   },
   imageStyle: {
-    width: 120,
-    height: 120,
-    borderRadius: 8,
+    width: '100%',
+    height: 300,
     resizeMode: 'cover',
+  },
+  favoriteIcon: {
+    position: 'absolute',
+    top: 10, 
+    right: 10, 
+    zIndex: 10, 
   },
   priceText: {
     fontSize: 16,
