@@ -1,9 +1,9 @@
 import React, { useEffect, useState, memo } from 'react';
-import { Image, Text, View, Button} from 'react-native';
+import { Image, Text, View} from 'react-native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { styles } from '../detail/detail_style';
 import { Ionicons } from '@expo/vector-icons';
-import { MainParamList, Screen } from '../../navigation/types';
+import Button from '../../atoms/button/button.atom';
 
 interface Product {
   id: number;
@@ -78,8 +78,12 @@ const DetailScreen = ({navigation, route }: Props) => {
         </View>
         <Text style={styles.reviews}>({product.rating.count} reviews)</Text>
       </View>
-      <Button title={'Torna indietro'} onPress={navigation.goBack} />
-    </View>
+      <Button 
+        title={'Torna indietro'} 
+        onPress={navigation.goBack} 
+         style={styles.backButton} 
+      />
+   </View>
   );
 };
 

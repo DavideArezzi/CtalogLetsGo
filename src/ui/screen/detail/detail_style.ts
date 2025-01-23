@@ -54,5 +54,8 @@ export const styles = StyleSheet.create({
       fontSize: 18,
       color: 'red',
     },
+    backButton: {
+      marginHorizontal: 16,
+    },
   });
   
