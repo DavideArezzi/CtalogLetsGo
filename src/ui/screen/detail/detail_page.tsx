@@ -4,6 +4,7 @@ import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { styles } from '../detail/detail_style';
 import { Ionicons } from '@expo/vector-icons';
 import Button from '../../atoms/button/button.atom';
+import { MainParamList, Screen } from '../../navigation/types';
 
 interface Product {
   id: number;
