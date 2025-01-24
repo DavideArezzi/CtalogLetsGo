@@ -1,5 +1,5 @@
 import React, { useEffect, useState, memo } from 'react';
-import { Image, Text, View} from 'react-native';
+import { Image, Text, View } from 'react-native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { styles } from '../detail/detail_style';
 import { Ionicons } from '@expo/vector-icons';
@@ -26,7 +26,7 @@ interface Props {
   };
 }
 
-const DetailScreen = ({navigation, route }: Props) => {
+const DetailScreen = ({ navigation, route }: Props) => {
   const { id } = route.params;
   const [product, setProduct] = useState<Product | null>(null);
   const [error, setError] = useState<string | null>(null);
@@ -79,12 +79,8 @@ const DetailScreen = ({navigation, route }: Props) => {
         </View>
         <Text style={styles.reviews}>({product.rating.count} reviews)</Text>
       </View>
-      <Button 
-        title={'Torna indietro'} 
-        onPress={navigation.goBack} 
-        style={styles.backButton} 
-      />
-   </View>
+      <Button title={'Torna indietro'} onPress={navigation.goBack} style={styles.backButton} />
+    </View>
   );
 };
 

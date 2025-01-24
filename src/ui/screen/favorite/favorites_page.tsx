@@ -11,36 +11,39 @@ interface Props {
 }
 
 const FavoritesScreen = ({ navigation }: Props) => {
-  const { products, favoriteIds,refreshProducts,loadFavorites, addFavorite} = useProducts();
-  
+  const { products, favoriteIds, refreshProducts, loadFavorites, addFavorite } = useProducts();
+
   //**DATA **//
   const favorites = useMemo(
     () => products.filter((product) => favoriteIds.includes(product.id)),
     [products, favoriteIds]
   );
-  
+
   // **CALLBACKS ** //
   const renderItem = useCallback(
     ({ item }) => (
       <Card
-      product={item}
-      onAddFavorite={() => addFavorite(item)}
-      selected={favoriteIds.includes(item.id)}
-       onPress={() => {
-                if (!item.id) {
-                  return;
-                }
-                navigation.navigate(Screen.Detail, {
-                   id: item.id,
-                  });
-              }}
+        product={item}
+        onAddFavorite={() => addFavorite(item)}
+        selected={favoriteIds.includes(item.id)}
+        onPress={() => {
+          if (!item.id) {
+            return;
+          }
+          navigation.navigate(Screen.Detail, {
+            id: item.id,
+          });
+        }}
       />
     ),
     [addFavorite, favoriteIds]
   );
-  
-  const ItemSeparatorComponent = useCallback(() => <View style={favoritesStyles.itemSeparator}></View>, []);
-  
+
+  const ItemSeparatorComponent = useCallback(
+    () => <View style={favoritesStyles.itemSeparator}></View>,
+    []
+  );
+
   //**USE EFFECT **//
   useEffect(() => {
     const unsubscribe = navigation.addListener('focus', () => {
@@ -50,23 +53,21 @@ const FavoritesScreen = ({ navigation }: Props) => {
     });
 
     return unsubscribe;
-  }, [loadFavorites,navigation,refreshProducts]);
-
+  }, [loadFavorites, navigation, refreshProducts]);
 
   return (
     <View style={favoritesStyles.container}>
-      {
-        favorites.length > 0 ? (
-          <FlatList
+      {favorites.length > 0 ? (
+        <FlatList
           showsVerticalScrollIndicator={false}
           data={favorites}
           renderItem={renderItem}
           keyExtractor={(item) => item.id.toString()}
           ItemSeparatorComponent={ItemSeparatorComponent}
-          />
-        ) : (
-          <Text>Nofavorites yet</Text>
-        )} 
+        />
+      ) : (
+        <Text>Nofavorites yet</Text>
+      )}
     </View>
   );
 };
