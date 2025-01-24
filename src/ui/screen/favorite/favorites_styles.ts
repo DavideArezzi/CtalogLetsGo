@@ -4,7 +4,7 @@ export const favoritesStyles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 16,
-    backgroundColor: '#FD9CDA',
+    backgroundColor: 'white',
   },
   noItemsContainer: {
     flex: 1,

@@ -4,7 +4,7 @@ export const homeStyles = StyleSheet.create({
 
   container: {
     flex: 1,
-    backgroundColor: '#FD9CDA',
+    backgroundColor: 'white',
     paddingHorizontal: 16,
     paddingTop: 16,
   },
@@ -17,6 +17,8 @@ export const homeStyles = StyleSheet.create({
     paddingHorizontal: 8,
     borderRadius: 8,
     shadowColor: '#000',
+    borderWidth: 3,
+    borderColor: 'blue',
     shadowOffset: {
       width: 0,
       height: 2,
@@ -26,7 +28,7 @@ export const homeStyles = StyleSheet.create({
     elevation: 2,
   },
   filtersContainerCategory: {
-    flexDirection: 'column', // Organizza i pulsanti in colonne
+    flexDirection: 'column', 
     justifyContent: 'space-around',
     marginBottom: 16,
     backgroundColor: '#fff',
@@ -34,6 +36,8 @@ export const homeStyles = StyleSheet.create({
     paddingHorizontal: 8,
     borderRadius: 8,
     shadowColor: '#000',
+    borderWidth: 3,
+    borderColor: 'purple',
     shadowOffset: {
       width: 0,
       height: 2,
